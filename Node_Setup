@@ -1,0 +1,30 @@
+
+    Node *node = new Node(5);
+
+    List *list = new List();
+    list->first = node;
+
+    list->insert(list->first, 121);
+    list->insert(18, 2);
+    list->insert(0, 3);
+    list->insert(15, 4);
+    list->insert(10, 5);
+    list->print(cout);
+
+    cout << endl;
+    list->remove(list->first);
+    list->print(cout);
+
+    cout << endl;
+    list->remove(list->first);
+    list->print(cout);
+
+    cout << endl;
+    list->remove(15);
+    list->print(cout);
+
+    cout << endl;
+    list->remove(0);
+    list->print(cout);
+
+
