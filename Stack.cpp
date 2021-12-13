@@ -1,93 +1,103 @@
-//
-// Created by Xiaomi on 07.12.2021.
-//
-
 #include "Stack.h"
 
-int Stack::getSize() {
+template<typename T>
+int Stack<T>::getSize() {
     return size;
 }
 
-double Stack::top() {
-    return stackBase[size - 1];
+template<typename T>
+T Stack<T>::top() {
+    return Base_St[size - 1];
 }
 
-double Stack::pop() {
+template<typename T>
+T Stack<T>::pop() {
     --size;
-    return stackBase[size];
+    return Base_St[size];
 }
 
-void Stack::push(double value) {
+template<typename T>
+void Stack<T>::push(T value) {
     if (size != 0) {
-        double* temp = new double[size];
+        T* Temp_St = new T[size];
         for (int i = 0; i < size; i++) {
-            temp[i] = stackBase[i];
+            Temp_St[i] = Base_St[i];
         }
-        delete[] stackBase;
-        // создаем старый новый массив, но больше размером, куда закидываем переменную
-        stackBase = new double[++size];
+        delete[] Base_St;
+        Base_St = new T[++size];
         for (int j = 0; j < size - 1; j++) {
-            stackBase[j] = temp[j];
+            Base_St[j] = Temp_St[j];
         }
-        delete[] temp;
+        delete[] Temp_St;
     } else {
-        delete[] stackBase;
-        stackBase = new double[++size];
+        delete[] Base_St;
+        Base_St = new T[++size];
     }
-    stackBase[size - 1] = value;
+    Base_St[size - 1] = value;
 }
 
-void Stack::print(std::ostream &out) {
+template<typename T>
+void Stack<T>::print(std::ostream &out) {
     for (int i = 0; i < size; i++) {
-        out << " | " << stackBase[i] << " | ";
+        out << " | " << Base_St[i] << " | ";
     }
 }
 
-bool Stack::isEmpty() {
+template<typename T>
+bool Stack<T>::isEmpty() {
     return size;
 }
 
-Stack::~Stack() {
-    delete[] stackBase;
+template<typename T>
+Stack<T>::~Stack() {
+    delete[] Base_St;
+
 }
 
-void operator<<(Stack& stack, double el) {
-    stack.push(el);
+template <typename T>
+void operator<<(Stack<T>& stack, T elem) {
+    stack.push(elem);
 }
 
-void operator>>(Stack &stack, double el) {
-    stack.pop();
+template <typename T>
+void operator>>(Stack<T>& stack, T elem) {
+    elem = stack.pop();
 }
 
-Stack Stack::operator=(Stack &stack) {
+template<typename T>
+Stack<T> &Stack<T>::operator=(Stack<T> &stack) {
     this->size = stack.size;
+    delete[] this->Base_St;
+    this->stackBase = new T[stack.size];
     for (int i = 0; i < stack.size; ++i) {
-        this->stackBase[i]=stack.stackBase[i];
+        &Base_St[i] = &(stack.stackBase[i]);
     }
-
     return *this;
 }
 
-bool operator<(Stack &stack,Stack& stack1) {
-    return (stack.size < stack1.size);
+template <typename T>
+bool operator<(Stack<T>& F_stack,Stack<T>& S_stack) {
+    return (F_stack.size < S_stack.size);
 }
 
-bool operator>(Stack &stack,Stack& stack1) {
-    return (stack.size > stack1.size);
+template <typename T>
+bool operator>(Stack<T>& F_stack,Stack<T>& S_stack) {
+    return (F_stack.size > S_stack.size);
 }
 
-bool operator==(Stack &stack,Stack& stack1) {
-    return (stack.size == stack1.size);
+template <typename T>
+bool operator==(Stack<T>& F_stack,Stack<T>& S_stack) {
+    return (F_stack.size == S_stack.size);
 }
 
-double Stack::operator[](int i) {
+template <typename T>
+T Stack<T>::operator[](int i) {
     Stack stack = *this;
     for (int j = 0; j < i-1; ++j) {
         stack.pop();
     }
     return stack.pop();
 }
-
 
 
 

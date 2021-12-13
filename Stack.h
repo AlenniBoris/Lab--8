@@ -1,31 +1,32 @@
-#ifndef DIMA_S_STACK_H
-#define DIMA_S_STACK_H
-
+#ifndef LAB_8_STACK_H
+#define LA8_8_STACK_H
 
 #include <ostream>
 
+
+template<typename T>
 class Stack {
 private:
-    double* stackBase = new double[0];
+    T* Base_St = new T[0];
     int size = 0;
-
 public:
 
     int getSize();
-    double top();
-    double pop();
-    void push(double value);
+    T top();
+    T pop();
+    void push(T value);
     void print(std::ostream& out);
     bool isEmpty();
-    friend void operator <<(Stack& stack,double el);
-    friend void operator >>(Stack& stack,double el);
-    Stack operator=(Stack& stack);
 
-    friend bool operator<(Stack& stack,Stack& stack1);
-    friend bool operator>(Stack& stack,Stack& stack1);
-    friend bool operator==(Stack& stack,Stack& stack1);
 
-    double operator[](int i);
+    friend Stack<T> operator <<(Stack<T>& stack,T elem);
+    friend Stack<T> operator >>(Stack<T>& stack,T elem);
+    friend bool operator<(Stack<T>& F_stack,Stack<T>& S_stack);
+    friend bool operator>(Stack<T>& F_stack,Stack<T>& S_stack);
+    Stack<T> &operator=(Stack<T>& stack);
+    friend bool operator==(Stack<T>& F_stack,Stack<T>& S_stack);
+    T operator[](int i);
+
 
     ~Stack();
 
@@ -35,4 +36,4 @@ public:
 
 
 
-#endif //DIMA_S_STACK_H
+#endif //LAB_8_STACK_H
