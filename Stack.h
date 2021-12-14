@@ -1,6 +1,7 @@
 #ifndef LAB_8_STACK_H
 
-#include <ostream>
+#include <iostream>
+#include <string>
 
 
 template<typename T>
@@ -21,7 +22,9 @@ public:
     friend Stack<T> operator <<(Stack<T>& stack,T elem);
     friend Stack<T> operator >>(Stack<T>& stack,T elem);
     friend bool operator<(Stack<T>& F_stack,Stack<T>& S_stack);
+    friend bool operator<=(Stack<T>& F_stack,Stack<T>& S_stack);
     friend bool operator>(Stack<T>& F_stack,Stack<T>& S_stack);
+    friend bool operator>=(Stack<T>& F_stack,Stack<T>& S_stack);
     Stack<T> &operator=(const Stack<T>& stack);
     friend bool operator==(Stack<T>& F_stack,Stack<T>& S_stack);
     T operator[](int i);
@@ -84,16 +87,6 @@ Stack<T>::~Stack() {
 
 }
 
-template <typename T>
-void operator<<(Stack<T>& stack, T elem) {
-    stack.push(elem);
-}
-
-template <typename T>
-void operator>>(Stack<T>& stack, T elem) {
-    elem = stack.pop();
-}
-
 template<typename T>
 Stack<T> &Stack<T>::operator=(const Stack<T> &stack) {
     this->size = stack.size;
@@ -106,13 +99,33 @@ Stack<T> &Stack<T>::operator=(const Stack<T> &stack) {
 }
 
 template <typename T>
+void operator<<(Stack<T>& stack, T elem) {
+    stack.push(elem);
+}
+
+template <typename T>
+void operator>>(Stack<T>& stack, T elem) {
+    stack.pop();
+}
+
+template <typename T>
 bool operator<(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size < S_stack.size);
 }
 
 template <typename T>
+bool operator<=(Stack<T>& F_stack,Stack<T>& S_stack) {
+    return (F_stack.size < S_stack.size || F_stack.size == S_stack.size);
+}
+
+template <typename T>
 bool operator>(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size > S_stack.size);
+}
+
+template <typename T>
+bool operator>=(Stack<T>& F_stack,Stack<T>& S_stack) {
+    return (F_stack.size > S_stack.size || F_stack.size == S_stack.size);
 }
 
 template <typename T>
