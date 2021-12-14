@@ -49,8 +49,8 @@ double CalculateEquation(string MathEquation){
     for (size_t i = 0; i < MathEquation.size(); ++i) {
         if (Operation(MathEquation[i])){
             while(!(Operations.isEmpty() && OperationPriority(Expression[i]) <= OperationPriority(Operations.top()))) {
-                double FirstNumber = Numbers.pop();
                 double SecondNumber = Numbers.pop();
+                double FirstNumber = Numbers.pop();
                 Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
             }
             Operations << Expression[i];
@@ -70,8 +70,8 @@ double CalculateEquation(string MathEquation){
             }
             else if(MathEquation[i] == ')'){
                 while (Operations.top() != '('){
-                    double FirstNumber = Numbers.pop();
                     double SecondNumber = Numbers.pop();
+                    double FirstNumber = Numbers.pop();
                     Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
                 }
                 Operations.pop();
@@ -89,8 +89,8 @@ double CalculateEquation(string MathEquation){
 
     }
     while (!(Operations.isEmpty())){
-        double FirstNumber = Numbers.pop();
         double SecondNumber = Numbers.pop();
+        double FirstNumber = Numbers.pop();
         Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
     }
     return Numbers.top();

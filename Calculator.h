@@ -13,8 +13,4 @@ int OperationPriority(char OperationType);
 double CalculateEquation(string MathEquation);
 
 
-
-
-
-
 #endif //LAB_8_CALCULATOR_H
