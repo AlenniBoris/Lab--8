@@ -11,6 +11,8 @@ double Calculate(double FirstNumber, double SecondNumber, char Operation);
 bool Operation(char OperationType);
 int OperationPriority(char OperationType);
 double CalculateEquation(string MathEquation);
+void Solution();
+
 
 
 #endif //LAB_8_CALCULATOR_H

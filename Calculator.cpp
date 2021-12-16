@@ -21,10 +21,12 @@ double Calculate(double FirstNumber, double SecondNumber, char Operation){
     }
     return 0;
 }
+
 bool Operation(char OperationType){
     return  (OperationType == '*') || (OperationType == '-') || (OperationType == '+') ||
             (OperationType == '^') || (OperationType == '/');
 }
+
 int OperationPriority(char OperationType){
     if ((OperationType == '+') || (OperationType == '-')){
         return 1;
@@ -37,6 +39,8 @@ int OperationPriority(char OperationType){
     }
     return -1;
 }
+
+
 double CalculateEquation(string MathEquation){
     string Expression{};
     for(char ExpressionPart: MathEquation) {
@@ -46,33 +50,33 @@ double CalculateEquation(string MathEquation){
     MathEquation = Expression;
     Stack<double> Numbers;
     Stack<char> Operations;
-    for (size_t i = 0; i < MathEquation.size(); ++i) {
+    for (unsigned int i = 0; i < MathEquation.size(); ++i) {
         if (Operation(MathEquation[i])){
-            while(!(Operations.isEmpty() && OperationPriority(Expression[i]) <= OperationPriority(Operations.top()))) {
-                double SecondNumber = Numbers.pop();
-                double FirstNumber = Numbers.pop();
-                Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
+            while(!(Operations.isEmpty()) && OperationPriority(MathEquation[i]) <= OperationPriority(Operations.top())){
+                double SecondNumber = Numbers >> 0;
+                double FirstNumber = Numbers >> 0;
+                Numbers << Calculate(FirstNumber, SecondNumber, Operations >> 0);
             }
-            Operations << Expression[i];
+            Operations << MathEquation[i];
         }else {
             if (MathEquation[i] == '('){
                 if (MathEquation[i+1] == '-'){
                     ++i;
-                    Expression = "";
                     while (MathEquation[i] != ')'){
+                        Expression = "";
                         Expression += MathEquation[i];
                         ++i;
                     }
-                    Numbers << std::stod(Expression);
+                    Numbers.push(-1* stod(Expression));
                 } else{
                     Operations << MathEquation[i];
                 }
             }
             else if(MathEquation[i] == ')'){
                 while (Operations.top() != '('){
-                    double SecondNumber = Numbers.pop();
-                    double FirstNumber = Numbers.pop();
-                    Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
+                    double SecondNumber = Numbers >> 0;
+                    double FirstNumber = Numbers >> 0;
+                    Numbers << Calculate(FirstNumber, SecondNumber, Operations >> 0);
                 }
                 Operations.pop();
             }
@@ -83,15 +87,23 @@ double CalculateEquation(string MathEquation){
                     ++i;
                 }
                 --i;
-                Numbers << std::stod(Expression);
+                Numbers.push(stod(Expression));
             }
         }
 
     }
-    while (!(Operations.isEmpty())){
-        double SecondNumber = Numbers.pop();
-        double FirstNumber = Numbers.pop();
-        Numbers << Calculate(FirstNumber, SecondNumber, Operations.pop());
+    while (!Operations.isEmpty()){
+        double S_Number = Numbers >> 0;
+        double F_Number = Numbers >> 0;
+        Numbers << Calculate(F_Number, S_Number, Operations >> 0);
     }
     return Numbers.top();
+}
+void Solution()
+{
+    string MathEquation;
+    cout << "Enter your expression:" << endl;
+    getline(cin, MathEquation);
+    cout << "It is equal to:" << endl;
+    cout << CalculateEquation(MathEquation) << endl;
 }

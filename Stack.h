@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-
+#include <stdexcept>
 
 template<typename T>
 class Stack {
@@ -18,16 +18,15 @@ public:
     void print(std::ostream& out);
     bool isEmpty();
 
-
-    friend Stack<T> operator <<(Stack<T>& stack,T elem);
-    friend Stack<T> operator >>(Stack<T>& stack,T elem);
-    friend bool operator<(Stack<T>& F_stack,Stack<T>& S_stack);
-    friend bool operator<=(Stack<T>& F_stack,Stack<T>& S_stack);
-    friend bool operator>(Stack<T>& F_stack,Stack<T>& S_stack);
-    friend bool operator>=(Stack<T>& F_stack,Stack<T>& S_stack);
     Stack<T> &operator=(const Stack<T>& stack);
-    friend bool operator==(Stack<T>& F_stack,Stack<T>& S_stack);
     T operator[](int i);
+
+    friend T operator<<(Stack<T> &stack, T elem) {
+        stack.push(elem);
+    }
+    friend T operator>>(Stack<T> &stack, T elem) {
+        stack.pop();
+    }
 
 
     ~Stack();
@@ -39,11 +38,18 @@ int Stack<T>::getSize() {
 }
 template<typename T>
 T Stack<T>::top() {
+    if (isEmpty())
+    {
+        throw std::runtime_error("Stack is empty");
+    }
     return Base_St[size - 1];
 }
 
 template<typename T>
 T Stack<T>::pop() {
+    if (size == 0){
+        throw std::runtime_error("The stack is empty!");
+    }
     --size;
     (*this).Base_St= Base_St;
     return Base_St[size];
@@ -89,6 +95,8 @@ Stack<T>::~Stack() {
 
 template<typename T>
 Stack<T> &Stack<T>::operator=(const Stack<T> &stack) {
+    if (this == &stack)
+        return *this;
     this->size = stack.size;
     delete[] this->Base_St;
     this->stackBase = new T[stack.size];
@@ -98,37 +106,28 @@ Stack<T> &Stack<T>::operator=(const Stack<T> &stack) {
     return *this;
 }
 
-template <typename T>
-void operator<<(Stack<T>& stack, T elem) {
-    stack.push(elem);
-}
 
-template <typename T>
-void operator>>(Stack<T>& stack, T elem) {
-    stack.pop();
-}
-
-template <typename T>
+template<typename T>
 bool operator<(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size < S_stack.size);
 }
 
-template <typename T>
+template<typename T>
 bool operator<=(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size < S_stack.size || F_stack.size == S_stack.size);
 }
 
-template <typename T>
+template<typename T>
 bool operator>(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size > S_stack.size);
 }
 
-template <typename T>
+template<typename T>
 bool operator>=(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size > S_stack.size || F_stack.size == S_stack.size);
 }
 
-template <typename T>
+template<typename T>
 bool operator==(Stack<T>& F_stack,Stack<T>& S_stack) {
     return (F_stack.size == S_stack.size);
 }
@@ -137,7 +136,6 @@ template <typename T>
 T Stack<T>::operator[](int i) {
     return Base_St[size-i];
 }
-
 
 
 

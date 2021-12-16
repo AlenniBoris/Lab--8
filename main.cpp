@@ -4,8 +4,6 @@
 using namespace std;
 
 int main() {
-    string MathEquation;
-    cin >> MathEquation;
-    cout << "\nAnswer: " << CalculateEquation(MathEquation);
+    Solution();
     return 0;
 }
