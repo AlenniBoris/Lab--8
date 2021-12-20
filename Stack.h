@@ -27,20 +27,9 @@ public:
 
     T operator[](int i);
 
-
-
-
-    friend  T  operator<<(Stack<T> &stack, T elem) {
-        stack.push(elem);
-    }
-
-    friend T operator>>(Stack<T> &stack, T elem) {
-        stack.pop();
-    }
-
-
     ~Stack();
 };
+
 
 template<typename T>
 int Stack<T>::getSize() {
@@ -49,15 +38,14 @@ int Stack<T>::getSize() {
 
 template<typename T>
 T Stack<T>::top() {
-
     return Base_St[size - 1];
 }
 
 template<typename T>
 T Stack<T>::pop() {
-//    if (size == 0) {
-//        throw std::runtime_error("The stack is empty!");
-//    }
+    if (size == 0) {
+        throw std::runtime_error("The stack is empty!");
+    }
     --size;
     (*this).Base_St = Base_St;
     return Base_St[size];
@@ -92,7 +80,7 @@ void Stack<T>::print(std::ostream &out) {
 
 template<typename T>
 bool Stack<T>::isEmpty() {
-    return size;
+    return !size;
 }
 
 template<typename T>

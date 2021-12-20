@@ -13,7 +13,7 @@ bool Operation(char OperationType);
 
 int OperationPriority(char OperationType);
 
-double CalculateEquation(string MathEquation);
+double CalculateExpression(string MathEquation);
 
 void Solution();
 
