@@ -11,6 +11,7 @@ private:
     int size = 0;
 public:
 
+
     int getSize();
 
     T top();
@@ -32,7 +33,7 @@ public:
 
 
 template<typename T>
-int Stack<T>::getSize() {
+int  Stack<T>:: getSize() {
     return size;
 }
 

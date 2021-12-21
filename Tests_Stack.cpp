@@ -107,7 +107,7 @@ TEST(TestLogic, StackChar){
     stack2.push('a');
     stack2.push('q');
 
-    ASSERT_EQ(stack1 < stack2,0);
+    ASSERT_EQ(stack1 < stack2,false);
 }
 TEST(TestLogic, StackChar2){
     Stack<char> stack1;
@@ -125,7 +125,7 @@ TEST(TestLogic, StackChar2){
     stack2.push('a');
     stack2.push('q');
 
-    ASSERT_EQ(stack1 > stack2,1);
+    ASSERT_EQ(stack1 > stack2,true);
 }
 TEST(TestLogic, StackChar3){
     Stack<char> stack1;
@@ -143,7 +143,7 @@ TEST(TestLogic, StackChar3){
     stack2.push('a');
     stack2.push('q');
 
-    ASSERT_EQ(stack1 == stack2,0);
+    ASSERT_EQ(stack1 == stack2,false);
 }
     TEST(TestLogic, StackInt){
     Stack<int> stack1;
