@@ -57,6 +57,7 @@ string ExactEquation(string MathEquation){
 
 string DeleteSpacesInEquation(string MathEquation) {
     string WithoutSpaces = {};
+    ExactEquation(MathEquation);
     for (int i = 0; i < MathEquation.size(); ++i) {
         if (MathEquation[i] != ' ') {
             WithoutSpaces += MathEquation[i];
