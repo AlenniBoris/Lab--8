@@ -34,11 +34,25 @@ double Calculate(double F_Number, double S_Number, char Operation) {
     }
     if (Operation == '/') {
         if (S_Number == 0) {
-            throw std::runtime_error("Can't divide by zero");
+            throw runtime_error("Can't divide by zero");
         }
         return (F_Number / S_Number);
     }
     return 0;
+}
+
+string ExactEquation(string MathEquation){
+    char ExactSymbols[12] = {'1','2','3','4','5','6','7','8','9','0',' ','.'};
+    for(int i = 0; i < 12 ; i++){
+        for(int j = 0 ; j < MethEquation.size() ; j++){
+            if(MathEquation[j] != ExactSymbols[i]){
+                 throw runtime_error("Enter numbers not letters");
+            } 
+            else{
+                return MathEquation;
+            } 
+        }
+    }
 }
 
 string DeleteSpacesInEquation(string MathEquation) {
@@ -48,6 +62,9 @@ string DeleteSpacesInEquation(string MathEquation) {
             WithoutSpaces += MathEquation[i];
         }
     }
+    if(WithoutSpaces.empty()){
+        throw runtime_error("Enter numbers");
+    } 
     return WithoutSpaces;
 }
 
