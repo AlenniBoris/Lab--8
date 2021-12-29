@@ -46,7 +46,7 @@ string ExactEquation(string MathEquation){
     for(int i = 0; i < 15 ; i++){
         for(int j = 0 ; j < MethEquation.size() ; j++){
             if(MathEquation[j] != ExactSymbols[i]){
-                 throw runtime_error("Enter numbers not letters");
+                 throw runtime_error("Enter correct mathematical equation");
             } 
             else{
                 return MathEquation;
