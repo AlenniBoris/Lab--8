@@ -27,51 +27,43 @@ TEST(Calculate_Test, Test_Without_Equation) {
     ASSERT_EQ(Calculate(Numbers[2], Numbers[0], '/'),50);
     ASSERT_EQ(Calculate(Numbers[2], Numbers[0], '^'),10000);
 }
-TEST(Calculate_Test, Test_With_Equation1) {
+TEST(Calculate_Test, Test_With_Two_Numbers) {
     string Eq1 = "-9+9";
     ASSERT_EQ(Polish(Eq1),0);
 }
-TEST(Calculate_Test, Test_With_Equation2) {
+TEST(Calculate_Test, Test_With_Four_Negative) {
     string Eq1 = "-1-2-3-4";
     ASSERT_EQ(Polish(Eq1),-10);
 }
-TEST(Calculate_Test, Test_With_Equation3) {
+TEST(Calculate_Test, Test_With_PlusMinus) {
     string Eq1 = "7+-5";
     ASSERT_EQ(Polish(Eq1),2);
 }
-TEST(Calculate_Test, Test_With_Equation4) {
+TEST(Calculate_Test, Test_With_SeveralNumbersAndPlusMinus) {
     string Eq1 = "7+-8+-5+-1";
     ASSERT_EQ(Polish(Eq1),-7);
 }
-TEST(Calculate_Test, Test_With_Equation5) {
+TEST(Calculate_Test, Test_With_Multiply) {
     string Eq1 = "-2*5";
     ASSERT_EQ(Polish(Eq1),-10);
 }
-TEST(Calculate_Test, Test_With_Equation6) {
+TEST(Calculate_Test, Test_With_MultiplyAbdBrackets) {
     string Eq1 = "-(8+8)*3";
     ASSERT_EQ(Polish(Eq1),-48);
 }
-TEST(Calculate_Test, Test_With_Equation7) {
-    string Eq1 = "-9*(-8)";
-    ASSERT_EQ(Polish(Eq1),72);
-}
-TEST(Calculate_Test, Test_With_Equation8) {
+TEST(Calculate_Test, Test_With_Degree) {
     string Eq1 = "(7^2+51)/100+9^2+2^4+2";
     ASSERT_EQ(Polish(Eq1),100);
 }
-TEST(Calculate_Test, Test_With_Equation9) {
+TEST(Calculate_Test, Test_With_DegreeAndNegative) {
     string Eq1 = "-78-32+11^2";
     ASSERT_EQ(Polish(Eq1),11);
 }
-TEST(Calculate_Test, Test_With_Equation10) {
+TEST(Calculate_Test, Test_With_Brackets) {
     string Eq1 = "(11-9)*28";
     ASSERT_EQ(Polish(Eq1),56);
 }
-TEST(Calculate_Test, Test_With_Equation11) {
-    string Eq1 = "32^2-34/2";
-    ASSERT_EQ(Polish(Eq1),1007);
-}
-TEST(Calculate_Test, Test_With_Equation12) {
+TEST(Calculate_Test, Test_With_DoubleNumbers) {
     string Eq1 = "5.6+89-(6.1)^2+766.877";
     ASSERT_DOUBLE_EQ(Polish(Eq1),824.267);
 }
