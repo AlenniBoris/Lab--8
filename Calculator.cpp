@@ -42,8 +42,8 @@ double Calculate(double F_Number, double S_Number, char Operation) {
 }
 
 string ExactEquation(string MathEquation){
-    char ExactSymbols[12] = {'1','2','3','4','5','6','7','8','9','0',' ','.'};
-    for(int i = 0; i < 12 ; i++){
+    char ExactSymbols[15] = {'1','2','3','4','5','6','7','8','9','0',' ','.','+','-','*','/'};
+    for(int i = 0; i < 15 ; i++){
         for(int j = 0 ; j < MethEquation.size() ; j++){
             if(MathEquation[j] != ExactSymbols[i]){
                  throw runtime_error("Enter numbers not letters");
